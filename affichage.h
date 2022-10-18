@@ -6,5 +6,6 @@
 #define MANDELBROT_AFFICHAGE_H
 #include <vector>
 #include <iomanip>
-void afficheGrille(const std::vector<std::vector<int>> grille);
+void afficheRegles();
+void afficheGrille(const std::vector<std::vector<int>>& grille);
 #endif //MANDELBROT_AFFICHAGE_H
