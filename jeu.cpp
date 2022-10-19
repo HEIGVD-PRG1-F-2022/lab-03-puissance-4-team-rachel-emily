@@ -6,8 +6,7 @@
 
 using namespace std;
 
-bool isColumnFull();
-void demandeJouer();
+
 
 void demandePlacement()  {
     int colonne;
@@ -21,5 +20,5 @@ bool isColumnFull(int colonne)  {
 }
 
 void demandeJouer(vector<vector<int>>& grille){
-    demandePlacement();
+    //demandePlacement();
 }
