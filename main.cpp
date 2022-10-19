@@ -16,16 +16,7 @@ vector<vector<int>> grille = {
 };
 
 int main()  {
-#ifdef _WIN32
-
-    /**
- * Set Windows console format to UTF-8 to support display of colors
- */
-
-    system(("chcp "s + std::to_string(CP_UTF8)).c_str()); //for colored output in console
-
-
-#endif
+    setWindowsConsoleToUTF8();
     afficheRegles();
     afficheGrille(grille);
     //demandePlacement();

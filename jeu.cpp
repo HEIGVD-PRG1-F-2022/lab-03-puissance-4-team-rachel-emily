@@ -12,13 +12,15 @@ void demandePlacement()  {
     int colonne;
     cout << "Entrez le numéro de la colonne entre 0 et 6 : " << endl;
     cin >> colonne;
-
 }
 
-bool isColumnFull(int colonne)  {
-
+bool isLegalMove(vector<vector<int>>& grille, int coup){
+    if ((coup >= 0 && coup <= grille.size()) && (grille[0][coup] == 0)){
+        return true;
+    }
+    return false;
 }
 
-void demandeJouer(vector<vector<int>>& grille){
-    //demandePlacement();
+void demandeEtJoue(){
+
 }
