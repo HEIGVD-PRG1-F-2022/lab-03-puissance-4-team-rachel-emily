@@ -21,9 +21,9 @@ int main()  {
     /**
  * Set Windows console format to UTF-8 to support display of colors
  */
-void setWindowsConsoleToUTF8() {
+
     system(("chcp "s + std::to_string(CP_UTF8)).c_str()); //for colored output in console
-}
+
 
 #endif
     afficheRegles();

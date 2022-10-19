@@ -5,6 +5,7 @@
 #ifndef PUISSANCE4_JEU_H
 #define PUISSANCE4_JEU_H
 #include <vector>
+enum Pion {Vide, Rouge, Jaune};
 void demandePlacement();
 bool isColumnFull();
 
