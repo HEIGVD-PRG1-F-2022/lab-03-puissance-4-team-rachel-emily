@@ -4,12 +4,12 @@
 #include "jeu.h"
 #include <iostream>
 #include <limits>
+#include "affichage.h"
 
 using namespace std;
 
 
-
-int demandePlacement()  {
+int demandePlacement() {
     int colonne;
     cout << "Entrez le numéro de la colonne entre 0 et 6 : " << endl;
     while (not(cin >> colonne)) {
@@ -20,44 +20,51 @@ int demandePlacement()  {
     return colonne;
 }
 
-bool isLegalMove(vector<vector<Piece>>& grille, int coup){
-    if ((coup >= 0 && coup <= grille.size()) && (grille[0][coup] == Piece::empty)){
+bool isLegalMove(vector<vector<Piece>> &grille, int coup) {
+    if ((coup >= 0 && coup <= grille.size()) && (grille[0][coup] == Piece::empty)) {
         return true;
     }
     return false;
 }
 
-void demandeEtJoue(vector<vector<Piece>>& grille, Piece colour){
+void demandeEtJoue(vector<vector<Piece>> &grille, Piece colour) {
     int coup = 0;
     do {
         coup = demandePlacement();
-    } while(!isLegalMove(grille, coup));
-   joue(grille, coup, colour);
+    } while (!isLegalMove(grille, coup));
+    joue(grille, coup, colour);
 }
 
-void joue(vector<vector<Piece>>& grille, int coup, Piece colour) {
+void joue(vector<vector<Piece>> &grille, int coup, Piece colour) {
 
-    for(int i = grille.size()-1; i >= 0; i--) {
-        if(grille[i][coup] == Piece::empty) {
-          grille[i][coup] = colour;
-          break;
+    for (int i = grille.size() - 1; i >= 0; i--) {
+        if (grille[i][coup] == Piece::empty) {
+            grille[i][coup] = colour;
+            break;
         }
     }
 }
 
 bool hasWon(const vector<vector<Piece>> &grille, Piece colour) {
-    for(int x = 0; x < grille.size(); x++){
-        for(int y = 0; y < grille[x].size(); y++){
-            bool  isInYRange = y + 4 <= grille[x].size();
-            bool isInXRange = x + 4 <= grille.size();
-            if(isInYRange && count(grille, x, y, 0, 1)
-            || isInYRange && isInXRange && count(grille, x, y, 1, 1)
-            || isInXRange && count(grille, x, y, 1, 0)){
-                return true;
-            }
+    for (int x = 0; x < grille.size(); x++) {
+        for (int y = 0; y < grille[x].size(); y++) {
+            if (grille[x][y] == colour) {
+                bool isInPosYRange = y + 4 <= grille[x].size();
+                bool isInPosXRange = x + 4 <= grille.size();
+                bool isInNegYRange = y - 3 >= 0;
 
+                if (isInPosYRange && count(grille, x, y, 0, 1)
+                    || isInPosYRange && isInPosXRange && count(grille, x, y, 1, 1)
+                    || isInPosXRange && count(grille, x, y, 1, 0)
+                    || isInNegYRange && count(grille, x, y, -1, 1)) {
+                    return true;
+                }
+
+
+            }
         }
     }
+    return false;
 }
 
 bool count(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepart, bool dirX, bool dirY) {
@@ -65,7 +72,7 @@ bool count(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepa
     int ligne(ligneDepart);
     int colonne(colonneDepart);
 
-    while(grille[ligne][colonne] == grille[ligneDepart][colonneDepart]) {
+    while (grille[ligne][colonne] == grille[ligneDepart][colonneDepart]) {
         ++result;
         ligne += dirX;
         colonne += dirY;
@@ -75,3 +82,42 @@ bool count(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepa
     }
     return false;
 }
+
+bool isBoardFull(const vector<vector<Piece>> &grille) {
+    for (int y = 0; y < grille[0].size(); y++) {
+        if (grille[0][y] == Piece::empty) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void joueUnePartie() {
+    vector<vector<Piece>> grille(6, vector<Piece>(7, Piece::empty));
+    bool joueur1 = true;
+    Piece currentPiece = Piece::empty;
+    while (1) {
+        afficheGrille(grille);
+        if (joueur1) {
+            currentPiece = Piece::red;
+        } else {
+            currentPiece = Piece::yellow;
+        }
+        demandeEtJoue(grille, currentPiece);
+
+        if (hasWon(grille, currentPiece)) {
+            afficheGrille(grille);
+            cout << "Joueur " << ((currentPiece == Piece::red) ? "rouge" : "jaune") << " a gagné. " << endl;
+            return;
+        }
+        if (isBoardFull(grille)) {
+            afficheGrille(grille);
+            cout << "Egalité" << endl;
+            return;
+        }
+        joueur1 = !joueur1;
+    }
+
+
+}
+
