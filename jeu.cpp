@@ -99,15 +99,15 @@ void joueUnePartie() {
     while (1) {
         afficheGrille(grille);
         if (joueur1) {
-            currentPiece = Piece::red;
-        } else {
             currentPiece = Piece::yellow;
+        } else {
+            currentPiece = Piece::red;
         }
         demandeEtJoue(grille, currentPiece);
 
         if (hasWon(grille, currentPiece)) {
             afficheGrille(grille);
-            cout << "Joueur " << ((currentPiece == Piece::red) ? "rouge" : "jaune") << " a gagné. " << endl;
+            cout << "Joueur " << ((currentPiece == Piece::yellow) ? "rouge" : "jaune") << " a gagné. " << endl;
             return;
         }
         if (isBoardFull(grille)) {
