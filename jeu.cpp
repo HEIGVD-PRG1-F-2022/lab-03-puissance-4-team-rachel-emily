@@ -3,6 +3,7 @@
 //
 #include "jeu.h"
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -45,19 +46,32 @@ void joue(vector<vector<Piece>>& grille, int coup, Piece colour) {
 }
 
 bool hasWon(const vector<vector<Piece>> &grille, Piece colour) {
+    for(int x = 0; x < grille.size(); x++){
+        for(int y = 0; y < grille[x].size(); y++){
+            bool  isInYRange = y + 4 <= grille[x].size();
+            bool isInXRange = x + 4 <= grille.size();
+            if(isInYRange && count(grille, x, y, 0, 1)
+            || isInYRange && isInXRange && count(grille, x, y, 1, 1)
+            || isInXRange && count(grille, x, y, 1, 0)){
+                return true;
+            }
 
+        }
+    }
 }
 
-int count(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepart, bool dirX, bool dirY) {
+bool count(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepart, bool dirX, bool dirY) {
     int result = 0;
-    size_t ligne(ligneDepart);
-    size_t colonne(colonneDepart);
+    int ligne(ligneDepart);
+    int colonne(colonneDepart);
 
     while(grille[ligne][colonne] == grille[ligneDepart][colonneDepart]) {
         ++result;
         ligne += dirX;
         colonne += dirY;
+        if (result >= 4) {
+            return true;
+        }
     }
-
-    return result;
+    return false;
 }

@@ -12,6 +12,6 @@ bool isColumnFull();
 void demandeEtJoue(std::vector<std::vector<Piece>>& grille, Piece colour);
 bool isLegalMove(std::vector<std::vector<Piece>>& grille, int coup);
 bool hasWon(const std::vector<std::vector<Piece>> &grille, Piece colour);
-int count(const std::vector<std::vector<Piece>> &grille, int ligneDepart, int colonneDepart, bool dirX, bool dirY);
+bool count(const std::vector<std::vector<Piece>> &grille, int ligneDepart, int colonneDepart, bool dirX, bool dirY);
 void joue(std::vector<std::vector<Piece>>& grille, int coup, Piece colour);
 #endif //PUISSANCE4_JEU_H
