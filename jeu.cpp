@@ -19,28 +19,45 @@ int demandePlacement()  {
     return colonne;
 }
 
-bool isLegalMove(vector<vector<int>>& grille, int coup){
-    if ((coup >= 0 && coup <= grille.size()) && (grille[0][coup] == 0)){
+bool isLegalMove(vector<vector<Piece>>& grille, int coup){
+    if ((coup >= 0 && coup <= grille.size()) && (grille[0][coup] == Piece::empty)){
         return true;
     }
     return false;
 }
 
-void demandeEtJoue(vector<vector<int>>& grille, bool joueur){
+void demandeEtJoue(vector<vector<Piece>>& grille, Piece colour){
     int coup = 0;
     do {
         coup = demandePlacement();
     } while(!isLegalMove(grille, coup));
-   joue(grille, coup, joueur);
+   joue(grille, coup, colour);
 }
 
-void joue(vector<vector<int>>& grille, int coup, bool joueur) {
+void joue(vector<vector<Piece>>& grille, int coup, Piece colour) {
 
     for(int i = grille.size()-1; i >= 0; i--) {
-        if(grille[i][coup] == 0) {
-          grille[i][coup] = (int)joueur + 1;
+        if(grille[i][coup] == Piece::empty) {
+          grille[i][coup] = colour;
           break;
         }
     }
 }
 
+bool hasWon(const vector<vector<Piece>> &grille, Piece colour) {
+
+}
+
+int count(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepart, bool dirX, bool dirY) {
+    int result = 0;
+    size_t ligne(ligneDepart);
+    size_t colonne(colonneDepart);
+
+    while(grille[ligne][colonne] == grille[ligneDepart][colonneDepart]) {
+        ++result;
+        ligne += dirX;
+        colonne += dirY;
+    }
+
+    return result;
+}

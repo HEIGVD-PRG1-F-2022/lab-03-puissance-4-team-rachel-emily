@@ -6,20 +6,13 @@
 using namespace std;
 
 //vector<vector<int>> grille(6, vector<int>(7,0));
-vector<vector<int>> grille = {
-        {2, 1, 2, 1, 2, 0, 1},
-        {2, 1, 2, 1, 1, 2, 2},
-        {1, 2, 1, 2, 2, 1, 1},
-        {1, 1, 2, 1, 2, 1, 2},
-        {2, 2, 1, 1, 2, 1, 1},
-        {1, 2, 1, 2, 1, 2, 2},
-};
+vector<vector<Piece>> grille(6, vector<Piece>(7, Piece::empty));
 
 int main()  {
     setWindowsConsoleToUTF8();
     afficheRegles();
     afficheGrille(grille);
-    demandeEtJoue(grille, false);
+    demandeEtJoue(grille, Piece::red);
     afficheGrille(grille);
 
     return 0;

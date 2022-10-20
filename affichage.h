@@ -6,7 +6,9 @@
 #define PUISSANCE4_AFFICHAGE_H
 #include <vector>
 #include <iomanip>
+#include "jeu.h"
+
 void afficheRegles();
-void afficheGrille(const std::vector<std::vector<int>>& grille);
+void afficheGrille(const std::vector<std::vector<Piece>>& grille);
 void setWindowsConsoleToUTF8();
 #endif //PUISSANCE4_AFFICHAGE_H
