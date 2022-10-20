@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include "affichage.h"
-#include "jeu.h"
+#include "moteurJeuPuissance4.h"
+#include "jeuPuissance4.h"
 
 using namespace std;
 

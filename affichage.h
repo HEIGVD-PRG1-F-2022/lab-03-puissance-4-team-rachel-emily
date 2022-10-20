@@ -4,11 +4,17 @@
 
 #ifndef PUISSANCE4_AFFICHAGE_H
 #define PUISSANCE4_AFFICHAGE_H
+
 #include <vector>
 #include <iomanip>
-#include "jeu.h"
+#include "moteurJeuPuissance4.h"
 
 void afficheRegles();
-void afficheGrille(const std::vector<std::vector<Piece>>& grille);
+
+void afficheGrille(const std::vector<std::vector<Piece>> &grille);
+
 void setWindowsConsoleToUTF8();
+
+void clearConsole();
+
 #endif //PUISSANCE4_AFFICHAGE_H

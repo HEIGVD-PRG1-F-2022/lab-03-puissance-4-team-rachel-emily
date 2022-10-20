@@ -1,24 +1,12 @@
 //
 // Created by emily on 18.10.2022.
 //
-#include "jeu.h"
+#include "moteurJeuPuissance4.h"
 #include <iostream>
 #include <limits>
-#include "affichage.h"
 
 using namespace std;
 
-
-int demandePlacement() {
-    int colonne;
-    cout << "Entrez le numéro de la colonne entre 0 et 6 : " << endl;
-    while (not(cin >> colonne)) {
-        cout << "Vous n'avez pas entré un entier, recommencez : ";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    return colonne;
-}
 
 bool isLegalMove(vector<vector<Piece>> &grille, int coup) {
     if ((coup >= 0 && coup <= grille.size()) && (grille[0][coup] == Piece::empty)) {
@@ -29,9 +17,15 @@ bool isLegalMove(vector<vector<Piece>> &grille, int coup) {
 
 void demandeEtJoue(vector<vector<Piece>> &grille, Piece colour) {
     int coup = 0;
-    do {
-        coup = demandePlacement();
-    } while (!isLegalMove(grille, coup));
+    while (1) {
+        cout << "Entrez le numéro de la colonne entre 0 et " << grille[0].size() - 1 << " : " << endl;
+        askUserAndCheck(coup);
+
+        if (isLegalMove(grille, coup)) {
+            break;
+        }
+        cout << "Coup invalide." << endl;
+    }
     joue(grille, coup, colour);
 }
 
@@ -49,9 +43,9 @@ bool hasWon(const vector<vector<Piece>> &grille, Piece colour) {
     for (int x = 0; x < grille.size(); x++) {
         for (int y = 0; y < grille[x].size(); y++) {
             if (grille[x][y] == colour) {
-                bool isInPosYRange = y + 4 <= grille[x].size();
-                bool isInPosXRange = x + 4 <= grille.size();
-                bool isInNegYRange = y - 3 >= 0;
+                bool isInPosYRange = (y + 4 <= grille[x].size());
+                bool isInPosXRange = (x + 4 <= grille.size());
+                bool isInNegYRange = (y - 3 >= 0);
 
                 if (isInPosYRange && count(grille, x, y, 0, 1)
                     || isInPosYRange && isInPosXRange && count(grille, x, y, 1, 1)
@@ -67,7 +61,7 @@ bool hasWon(const vector<vector<Piece>> &grille, Piece colour) {
     return false;
 }
 
-bool count(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepart, bool dirX, bool dirY) {
+bool count(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepart, int dirX, int dirY) {
     int result = 0;
     int ligne(ligneDepart);
     int colonne(colonneDepart);
@@ -92,31 +86,11 @@ bool isBoardFull(const vector<vector<Piece>> &grille) {
     return true;
 }
 
-void joueUnePartie() {
-    vector<vector<Piece>> grille(6, vector<Piece>(7, Piece::empty));
-    bool joueur1 = true;
-    Piece currentPiece = Piece::empty;
-    while (1) {
-        afficheGrille(grille);
-        if (joueur1) {
-            currentPiece = Piece::yellow;
-
-        } else {
-            currentPiece = Piece::red;
-        }
-        demandeEtJoue(grille, currentPiece);
-
-        if (hasWon(grille, currentPiece)) {
-            afficheGrille(grille);
-            cout << "Joueur " << (joueur1? "jaune" : "rouge") << " a gagné. " << endl;
-            return;
-        }
-        if (isBoardFull(grille)) {
-            afficheGrille(grille);
-            cout << "Egalité" << endl;
-            return;
-        }
-        joueur1 = !joueur1;
+void askUserAndCheck(int &varToFill, string errorMessage) {
+    while (not(cin >> varToFill)) {
+        cout << errorMessage;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 }
 
