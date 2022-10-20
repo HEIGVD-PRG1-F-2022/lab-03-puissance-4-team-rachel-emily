@@ -12,6 +12,5 @@ int main() {
     setWindowsConsoleToUTF8();
     afficheRegles();
     joueUnePartie();
-
     return 0;
 }
