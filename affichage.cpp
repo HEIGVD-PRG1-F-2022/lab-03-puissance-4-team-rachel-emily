@@ -3,11 +3,9 @@
 //
 #include <iostream>
 
-#ifdef _WIN32
-#include "windows.h"
-#endif
 
 #include "affichage.h"
+#include "util.h"
 
 using namespace std;
 
@@ -36,33 +34,4 @@ void afficheGrille(const vector<vector<Piece>> &grille) {
     }
 }
 
-/**
-* Set Windows console format to UTF-8 to support display of colors
-*/
-void setWindowsConsoleToUTF8() {
-#ifdef _WIN32
 
-    system(("chcp "s + std::to_string(CP_UTF8)).c_str()); //for colored output in console
-
-#endif
-}
-
-#ifdef _WIN32
-
-/**
- * Clear console with system cmd based on if it's a Windows or a UNIX system
- */
-void clearConsole() {
-    system("cls");
-}
-
-#else
-
-/**
- * Clear console with system cmd based on if it's a Windows or a UNIX system
- */
-void clearConsole() {
-    system("clear");
-}
-
-#endif

@@ -5,6 +5,7 @@
 #include "affichage.h"
 #include <vector>
 #include <iostream>
+#include "util.h"
 
 using namespace std;
 
@@ -28,9 +29,29 @@ vector<vector<Piece>> demandeTailleEtCreeGrille() {
     return grille;
 }
 
+void demandeEtJoue(vector<vector<Piece>> &grille, Piece colour) {
+    int coup = 0;
+    while (1) {
+        cout << "Entrez le numéro de la colonne entre 0 et " << grille[0].size() - 1 << " : " << endl;
+        askForIntAndCheck(coup);
+
+        if (isLegalMove(grille, coup)) {
+            break;
+        }
+        cout << "Coup invalide." << endl;
+    }
+    joue(grille, coup, colour);
+}
+
+void ordinateurJoue(vector<vector<Piece>> &grille, Piece colour) {
+    joue(grille, computerRandomChoice(grille), colour);
+
+}
+
 void joueUnePartie() {
+    afficheRegles();
     int response = 0;
-    cout << "Voulez vous jouer une partie avec l'ordinateur ? (0 = non, else = oui) : ";
+    cout << "Voulez vous jouer une partie avec l'ordinateur ? (0 = non, autre chiffre = oui) : ";
     askForIntAndCheck(response);
     bool ia((bool) response);
     vector<vector<Piece>> grille = demandeTailleEtCreeGrille();

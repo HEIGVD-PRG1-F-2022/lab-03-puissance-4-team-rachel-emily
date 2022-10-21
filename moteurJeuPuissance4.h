@@ -12,12 +12,6 @@ enum Piece {
     empty, red, yellow
 };
 
-/**
- * demande le coup à l'utilisateur puis le joue
- * @param Grille Grille de jeu
- * @param colour Couleur du pion à jouer
- */
-void demandeEtJoue(std::vector<std::vector<Piece>> &grille, Piece colour);
 
 /**
  * Vérifie si le coup est autorisé (numéro de colonne existe dans la grille ET la colonne n'est pas pleine)
@@ -62,12 +56,6 @@ void joue(std::vector<std::vector<Piece>> &grille, int coup, Piece colour);
  */
 bool isBoardFull(const std::vector<std::vector<Piece>> &grille);
 
-/**
- * Fonction utilitaire, permet de demander un int à l'utilisateur jusqu'à ce qu'il entre bien un int
- * @param numberToFill la variable qui doit contenir la réponse de l'utilisateur
- * @param errorMessage le message d'erreur à donner à l'utilisateur (avec valeur par défaut)
- */
-void askForIntAndCheck(int &numberToFill, std::string errorMessage = "Entrée invalide, réessayez : ");
 
 /**
  * Calcule un coup aléatoire pour l'ordinateur
@@ -76,11 +64,5 @@ void askForIntAndCheck(int &numberToFill, std::string errorMessage = "Entrée in
  */
 int computerRandomChoice(const std::vector<std::vector<Piece>> &grille);
 
-/**
- *
- * @param grille
- * @param colour
- */
-void ordinateurJoue(std::vector<std::vector<Piece>> &grille, Piece colour);
 
 #endif //PUISSANCE4_MOTEURJEUPUISSANCE4_H

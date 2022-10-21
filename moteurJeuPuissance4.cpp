@@ -2,9 +2,7 @@
 // Created by emily on 18.10.2022.
 //
 #include "moteurJeuPuissance4.h"
-#include <iostream>
-#include <limits>
-#include <cstdlib>
+#include "util.h"
 
 using namespace std;
 
@@ -14,21 +12,6 @@ bool isLegalMove(vector<vector<Piece>> &grille, int coup) {
         return true;
     }
     return false;
-}
-
-
-void demandeEtJoue(vector<vector<Piece>> &grille, Piece colour) {
-    int coup = 0;
-    while (1) {
-        cout << "Entrez le numéro de la colonne entre 0 et " << grille[0].size() - 1 << " : " << endl;
-        askForIntAndCheck(coup);
-
-        if (isLegalMove(grille, coup)) {
-            break;
-        }
-        cout << "Coup invalide." << endl;
-    }
-    joue(grille, coup, colour);
 }
 
 
@@ -55,7 +38,8 @@ bool hasWon(const vector<vector<Piece>> &grille, Piece colour) {
                 if (isInPosYRange && countedFour(grille, x, y, 0, 1) //dans la ligne
                     || isInPosYRange && isInPosXRange && countedFour(grille, x, y, 1, 1) //diagonale de gauche à droite
                     || isInPosXRange && countedFour(grille, x, y, 1, 0) //colonne de haut en bas
-                    || isInNegYRange && countedFour(grille, x, y, -1, 1)) { //diagonale de droite à gauche
+                    ||
+                    isInNegYRange && isInPosXRange && countedFour(grille, x, y, 1, -1)) { //diagonale de droite à gauche
                     return true;
                 }
             }
@@ -92,14 +76,6 @@ bool isBoardFull(const vector<vector<Piece>> &grille) {
 }
 
 
-void askForIntAndCheck(int &numberToFill, string errorMessage) {
-    while (not(cin >> numberToFill)) {
-        cout << errorMessage;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-}
-
 int computerRandomChoice(const vector<vector<Piece>> &grille) {
     vector<int> notFullColumns;
     for (int y = 0; y < grille[0].size(); y++) {
@@ -107,11 +83,6 @@ int computerRandomChoice(const vector<vector<Piece>> &grille) {
             notFullColumns.push_back(y);
         }
     }
-    srand(time(0));
-    return notFullColumns[(rand() % (notFullColumns.size() - 1))];
+    return notFullColumns[randomInt(notFullColumns.size() - 1)];
 }
 
-void ordinateurJoue(vector<vector<Piece>> &grille, Piece colour) {
-    joue(grille, computerRandomChoice(grille), colour);
-
-}

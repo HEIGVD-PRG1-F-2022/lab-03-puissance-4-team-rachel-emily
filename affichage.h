@@ -9,12 +9,16 @@
 #include <iomanip>
 #include "moteurJeuPuissance4.h"
 
+/**
+ * affiche les règles du jeu et comment jouer avec ce programme
+ */
 void afficheRegles();
 
+/**
+ * affiche la grille de jeu
+ * @param grille grille à afficher
+ */
 void afficheGrille(const std::vector<std::vector<Piece>> &grille);
 
-void setWindowsConsoleToUTF8();
-
-void clearConsole();
 
 #endif //PUISSANCE4_AFFICHAGE_H
