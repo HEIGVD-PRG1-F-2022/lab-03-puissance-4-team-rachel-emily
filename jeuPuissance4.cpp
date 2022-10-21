@@ -14,10 +14,10 @@ vector<vector<Piece>> demandeTailleEtCreeGrille() {
     while (1) {
         cout << "Nombre de lignes : ";
 
-        askUserAndCheck(ligne);
+        askForIntAndCheck(ligne);
 
         cout << "Nombre de colonnes : ";
-        askUserAndCheck(colonne);
+        askForIntAndCheck(colonne);
         if (colonne >= 4 or ligne >= 4) {
             break;
         }
@@ -29,6 +29,10 @@ vector<vector<Piece>> demandeTailleEtCreeGrille() {
 }
 
 void joueUnePartie() {
+    int response = 0;
+    cout << "Voulez vous jouer une partie avec l'ordinateur ? (0 = non, else = oui) : ";
+    askForIntAndCheck(response);
+    bool ia((bool) response);
     vector<vector<Piece>> grille = demandeTailleEtCreeGrille();
     bool joueur1 = true;
     Piece currentPiece;
@@ -40,7 +44,12 @@ void joueUnePartie() {
         } else {
             currentPiece = Piece::red;
         }
-        demandeEtJoue(grille, currentPiece);
+        if (ia and not(joueur1)) {
+            ordinateurJoue(grille, currentPiece);
+            cout << endl;
+        } else {
+            demandeEtJoue(grille, currentPiece);
+        }
 
         if (hasWon(grille, currentPiece)) {
             afficheGrille(grille);
