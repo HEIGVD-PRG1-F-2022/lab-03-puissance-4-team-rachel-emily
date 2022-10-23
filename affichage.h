@@ -6,7 +6,6 @@
 #define PUISSANCE4_AFFICHAGE_H
 
 #include <vector>
-#include <iomanip>
 #include "moteurJeuPuissance4.h"
 
 /**

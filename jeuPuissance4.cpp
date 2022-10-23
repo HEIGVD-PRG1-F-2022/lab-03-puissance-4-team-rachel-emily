@@ -32,7 +32,8 @@ vector<vector<Piece>> demandeTailleEtCreeGrille() {
 void demandeEtJoue(vector<vector<Piece>> &grille, Piece colour) {
     int coup = 0;
     while (1) {
-        cout << "Entrez le numéro de la colonne entre 0 et " << grille[0].size() - 1 << " : " << endl;
+        cout << "Joueur " << ((colour == Piece::red) ? "rouge" : "jaune")
+             << ", entrez le numéro de la colonne entre 0 et " << grille[0].size() - 1 << " : " << endl;
         askForIntAndCheck(coup);
 
         if (isLegalMove(grille, coup)) {
@@ -44,7 +45,7 @@ void demandeEtJoue(vector<vector<Piece>> &grille, Piece colour) {
 }
 
 void ordinateurJoue(vector<vector<Piece>> &grille, Piece colour) {
-    joue(grille, computerRandomChoice(grille), colour);
+    joue(grille, computerModeratelyRandomChoice(grille, colour), colour);
 
 }
 

@@ -2,7 +2,7 @@
 // Created by rache on 18.10.2022.
 //
 #include <iostream>
-
+#include <iomanip>
 
 #include "affichage.h"
 #include "util.h"
@@ -21,7 +21,6 @@ void afficheRegles() {
 }
 
 void afficheGrille(const vector<vector<Piece>> &grille) {
-    clearConsole();
     for (int i = 0; i < grille.size(); i++) {
         for (int j = 0; j < grille[i].size(); j++) {
             cout << setw(2) << "\x1b[38;2;85;85;255m |\x1b[0m" << setw(2)

@@ -27,9 +27,5 @@ int randomInt(int maxValue);
 */
 void setWindowsConsoleToUTF8();
 
-/**
- * efface la console, s'adapte en fonction que l'on utilise windows ou linux
- */
-void clearConsole();
 
 #endif //PUISSANCE4_UTIL_H

@@ -5,7 +5,9 @@
 #include "util.h"
 
 using namespace std;
-
+const int MAX_SCORE = 1000;
+const int LOWEST_SCORE = -1000;
+const int MAX_DEEP = 3;
 
 bool isLegalMove(vector<vector<Piece>> &grille, int coup) {
     if ((coup >= 0 && coup <= grille.size()) && (grille[0][coup] == Piece::empty)) {
@@ -65,6 +67,20 @@ bool countedFour(const vector<vector<Piece>> &grille, int ligneDepart, int colon
     return false;
 }
 
+bool countedFour2(const vector<vector<Piece>> &grille, int ligneDepart, int colonneDepart, int dirX, int dirY) {
+    int result = 0;
+    int ligne(ligneDepart);
+    int colonne(colonneDepart);
+
+    while (grille[ligne][colonne] == grille[ligneDepart][colonneDepart]) {
+        ++result;
+        ligne += dirX;
+        colonne += dirY;
+
+    }
+    return result;
+}
+
 
 bool isBoardFull(const vector<vector<Piece>> &grille) {
     for (int y = 0; y < grille[0].size(); y++) {
@@ -75,14 +91,61 @@ bool isBoardFull(const vector<vector<Piece>> &grille) {
     return true;
 }
 
+int minmax(vector<vector<Piece>> grille, Piece colour) {
+    static int deepness = 1;
+    vector<int> possibleMoves = getPossibleMoves(grille);
+    for (auto i: possibleMoves) {
+        joue(grille, i, colour);
+        bool somebodyWon = hasWon(grille, colour);
+        if (somebodyWon and deepness % 2 == 0) {
+            deepness = 1;
+            return MAX_SCORE;
+        } else if (somebodyWon and deepness % 2 == 1) {
+            deepness = 1;
+            return LOWEST_SCORE;
+        }
+    }
+    if (MAX_DEEP > deepness) {
+        ++deepness;
+        return minmax(grille, ((colour == Piece::red) ? Piece::yellow : Piece::red));
+    } else {
+        deepness = 1;
+    }
+    return 0;
+}
 
-int computerRandomChoice(const vector<vector<Piece>> &grille) {
+vector<int> getPossibleMoves(const vector<vector<Piece>> &grille) {
     vector<int> notFullColumns;
     for (int y = 0; y < grille[0].size(); y++) {
         if (grille[0][y] == Piece::empty) {
             notFullColumns.push_back(y);
         }
     }
-    return notFullColumns[randomInt(notFullColumns.size() - 1)];
+    return notFullColumns;
 }
 
+int computerModeratelyRandomChoice(const vector<vector<Piece>> &grille, Piece colour) {
+
+    vector<int> possibleMoves = getPossibleMoves(grille);
+    for (auto i: possibleMoves) {
+        vector<vector<Piece>> grilleEval(grille); //copie la grille de base
+        joue(grilleEval, i, colour); // joue le coup sur la copie
+        if (hasWon(grilleEval, colour)) { // si le coup joué résulte en une victoire, retourne ce coup
+            return i;
+        }
+    }
+    //si l'ordinateur ne peut pas jouer au prochain coup, regarde si l'adversaire peut gagner en un coup
+    for (auto j: possibleMoves) {
+        vector<vector<Piece>> grilleEval2(grille); //copie la grille de base
+        Piece newColour = ((colour == Piece::red) ? Piece::yellow : Piece::red); //on trouve la couleur de l'adversaire
+        joue(grilleEval2, j, newColour); // joue le coup sur la copie
+        if (hasWon(grilleEval2, newColour)) { // si le coup joué résulte en une victoire
+            //retourne le coup, l'ordinateur joue ici pour empêcher à l'adversaire de jouer là après
+            return j;
+        }
+    }
+    //si on ne peut pas gagner tout de suite ou l'adversaire le coup d'après
+    //on calcule un coup aléatoire
+    return possibleMoves[randomInt(possibleMoves.size() - 1)];
+
+}

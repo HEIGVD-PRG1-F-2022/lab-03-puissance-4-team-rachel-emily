@@ -2,9 +2,12 @@
 // Created by rache on 21.10.2022.
 //
 #include <iostream>
+#include <limits>
 
 #ifdef _WIN32
+
 #include "windows.h"
+
 #endif
 using namespace std;
 
@@ -33,13 +36,7 @@ void setWindowsConsoleToUTF8() {
 /**
  * Clear console with system cmd based on if it's a Windows or a UNIX system
  */
-void clearConsole() {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
+
 
 
 
