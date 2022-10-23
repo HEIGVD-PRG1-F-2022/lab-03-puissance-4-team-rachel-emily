@@ -19,10 +19,10 @@ vector<vector<Piece>> askSizeAndCreateBoard() {
 
         cout << "Nombre de colonnes : ";
         askForIntAndCheck(column);
-        if (column >= 4 or line >= 4) {
+        if (column >= 4 && line >= 2 or line >= 4 && column >= 2) {
             break;
         }
-        cout << "Aligner 4 pions sur un plateau de moins de 4 lignes ou colonnes va être difficile, réessayez : "
+        cout << "Aligner 4 pions de même couleur sur un plateau de moins de 2x4 ou 4x2 va être difficile, réessayez : "
              << endl;
     }
     vector<vector<Piece>> gameBoard(line, vector<Piece>(column, Piece::empty));
