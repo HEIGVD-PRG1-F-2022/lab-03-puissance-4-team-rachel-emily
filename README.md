@@ -20,11 +20,14 @@ Ce projet a été écrit en c++ dans le cadre de la classe **PROG1** par Rachel 
   1. Choisir si l'on veut jouer contre l'ordinateur ou contre une autre joueur (Entrer 0 pour jouer contre un autre joueur et n'importe quel chiffre pour jouer contre l'ordinateur)
   2. Entrer le nombre de lignes voulues
   3. Entrer le nombre de colonnes voulues
+
+#### ATTENTION
+Le plateau doit avoir une taille minimale de 4x1 ou de 1x4 pour pouvoir être validé par le programme. Sinon, ce dernier vous demandera d'entrer de nouvelles dimensions jusqu'à ce que le plateau soit "jouable", c'est-à-dire qu'il y ait une possiblité d'aligner au minimum 4 jetons.
   
 ### Jouer une partie
  1. Le premier joueur choisit un chiffre entre 0 et n, n étant le nombre de colonnes choisies au début moins 1, puis appuie sur *Enter* pour valider le coup.
  Le coup sera joué uniquement si la colonne choisie n'est pas pleine. Sinon, le joueur doit rejouer jusqu'à rentrer un chiffre valide.
- 2. S'il s'agit de l'ordinateur, le coup va être placé de manière aléatoire à moins qu'il existe une possibilité de gagner pour l'ordinateur.
+ 2. S'il s'agit de l'ordinateur, le coup va être placé de manière aléatoire à moins qu'il existe une possibilité de gagner pour l'ordinateur ou de bloquer le joueur si ce dernier peut gagner lors de son prochain tour.
  En revanche, s'il s'agit d'une autre personne, cette dernière va effectuer les mêmes étapes que le premier joueur.
  C'est-à-dire, qu'elle devra choisir un chiffre entre 0 et n, n étant le nombre de colonnes choisies au début moins 1, puis appuyer sur *Enter* pour valider le coup.
  Le coup sera uniquement joué si la colonne choisie n'est pas pleine. Sinon, le joueur devra rejouer jusqu'à rentrer un chiffre valide.
