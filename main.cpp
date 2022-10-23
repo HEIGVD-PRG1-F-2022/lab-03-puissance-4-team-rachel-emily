@@ -7,6 +7,6 @@ using namespace std;
 int main() {
     //pour l'affichage en couleur et avec accent (marche par défaut seulement sous linux)
     setWindowsConsoleToUTF8();
-    joueUnePartie();
+    playGame();
     return 0;
 }

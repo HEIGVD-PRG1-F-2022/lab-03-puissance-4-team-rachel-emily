@@ -9,81 +9,81 @@
 
 using namespace std;
 
-vector<vector<Piece>> demandeTailleEtCreeGrille() {
-    int ligne, colonne;
+vector<vector<Piece>> askSizeAndCreateBoard() {
+    int line, column;
     cout << "Entrez les dimensions de la grille de jeu : " << endl;
     while (1) {
         cout << "Nombre de lignes : ";
 
-        askForIntAndCheck(ligne);
+        askForIntAndCheck(line);
 
         cout << "Nombre de colonnes : ";
-        askForIntAndCheck(colonne);
-        if (colonne >= 4 or ligne >= 4) {
+        askForIntAndCheck(column);
+        if (column >= 4 or line >= 4) {
             break;
         }
         cout << "Aligner 4 pions sur un plateau de moins de 4 lignes ou colonnes va être difficile, réessayez : "
              << endl;
     }
-    vector<vector<Piece>> grille(ligne, vector<Piece>(colonne, Piece::empty));
-    return grille;
+    vector<vector<Piece>> gameBoard(line, vector<Piece>(column, Piece::empty));
+    return gameBoard;
 }
 
-void demandeEtJoue(vector<vector<Piece>> &grille, Piece colour) {
-    int coup = 0;
+void askAndPlay(vector<vector<Piece>> &gameBoard, Piece colour) {
+    int move = 0;
     while (1) {
         cout << "Joueur " << ((colour == Piece::red) ? "rouge" : "jaune")
-             << ", entrez le numéro de la colonne entre 0 et " << grille[0].size() - 1 << " : " << endl;
-        askForIntAndCheck(coup);
+             << ", entrez le numéro de la colonne entre 0 et " << gameBoard[0].size() - 1 << " : " << endl;
+        askForIntAndCheck(move);
 
-        if (isLegalMove(grille, coup)) {
+        if (isLegalMove(gameBoard, move)) {
             break;
         }
         cout << "Coup invalide." << endl;
     }
-    joue(grille, coup, colour);
+    playMove(gameBoard, move, colour);
 }
 
-void ordinateurJoue(vector<vector<Piece>> &grille, Piece colour) {
-    joue(grille, computerModeratelyRandomChoice(grille, colour), colour);
+void computerPlay(vector<vector<Piece>> &gameBoard, Piece colour) {
+    playMove(gameBoard, computerModeratelyRandomChoice(gameBoard, colour), colour);
 
 }
 
-void joueUnePartie() {
-    afficheRegles();
+void playGame() {
+    showRules();
     int response = 0;
     cout << "Voulez vous jouer une partie avec l'ordinateur ? (0 = non, autre chiffre = oui) : ";
     askForIntAndCheck(response);
-    bool ia((bool) response);
-    vector<vector<Piece>> grille = demandeTailleEtCreeGrille();
-    bool joueur1 = true;
+    bool ai((bool) response);
+    vector<vector<Piece>> gameBoard = askSizeAndCreateBoard();
+    bool firstPlayer = true;
     Piece currentPiece;
     while (1) {
-        afficheGrille(grille);
-        if (joueur1) {
+        showGameBoard(gameBoard);
+        if (firstPlayer) {
             currentPiece = Piece::yellow;
 
         } else {
             currentPiece = Piece::red;
         }
-        if (ia and not(joueur1)) {
-            ordinateurJoue(grille, currentPiece);
+        if (ai and not(firstPlayer)) {
+            computerPlay(gameBoard, currentPiece);
             cout << endl;
         } else {
-            demandeEtJoue(grille, currentPiece);
+            askAndPlay(gameBoard, currentPiece);
         }
 
-        if (hasWon(grille, currentPiece)) {
-            afficheGrille(grille);
-            cout << "Joueur " << (joueur1 ? "jaune" : "rouge") << " a gagné. " << endl;
+        if (hasWon(gameBoard, currentPiece)) {
+            showGameBoard(gameBoard);
+            cout << "Joueur " << (firstPlayer ? "jaune" : "rouge") << " a gagné. " << endl;
             return;
         }
-        if (isBoardFull(grille)) {
-            afficheGrille(grille);
+        if (isBoardFull(gameBoard)) {
+            showGameBoard(gameBoard);
             cout << "Egalité" << endl;
             return;
         }
-        joueur1 = !joueur1;
+        firstPlayer = !firstPlayer;
     }
 }
 

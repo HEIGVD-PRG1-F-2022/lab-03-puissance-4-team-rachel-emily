@@ -12,25 +12,25 @@
  * demande à l'utilisateur la taille de la grille de jeu
  * @return retourne une grille de jeu de la taille demandée
  */
-std::vector<std::vector<Piece>> demandeTailleEtCreeGrille();
+std::vector<std::vector<Piece>> askSizeAndCreateBoard();
 
 /**
  * demande le coup à l'utilisateur puis le joue
  * @param Grille Grille de jeu
  * @param colour Couleur du pion à jouer
  */
-void demandeEtJoue(std::vector<std::vector<Piece>> &grille, Piece colour);
+void askAndPlay(std::vector<std::vector<Piece>> &gameBoard, Piece colour);
 
 /**
- *calcule un coup aléatoire de l'ordinateur et le joue sur la grille
- * @param grille La grille de jeu
+ *calcule un coup aléatoire de l'ordinateur et le playMove sur la grille
+ * @param gameBoard La grille de jeu
  * @param colour La couleur du pion à placer
  */
-void ordinateurJoue(std::vector<std::vector<Piece>> &grille, Piece colour);
+void computerPlay(std::vector<std::vector<Piece>> &gameBoard, Piece colour);
 
 /**
  * joue une partie entière de Puissance4 jusqu'à ce qu'il y ait une victoire ou un nul
  */
-void joueUnePartie();
+void playGame();
 
 #endif //PUISSANCE4_JEUPUISSANCE4_H

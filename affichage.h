@@ -11,13 +11,13 @@
 /**
  * affiche les règles du jeu et comment jouer avec ce programme
  */
-void afficheRegles();
+void showRules();
 
 /**
  * affiche la grille de jeu
- * @param grille grille à afficher
+ * @param gameBoard grille à afficher
  */
-void afficheGrille(const std::vector<std::vector<Piece>> &grille);
+void showGameBoard(const std::vector<std::vector<Piece>> &gameBoard);
 
 
 #endif //PUISSANCE4_AFFICHAGE_H

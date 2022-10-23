@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void afficheRegles() {
+void showRules() {
     cout
             << "Pour commencer une partie de puissance 4, on désigne le premier joueur. Celui-ci met un de ses jetons de couleur dans l’une des colonnes de son choix. Le jeton tombe alors en bas de la colonne."
             << endl <<
@@ -20,13 +20,13 @@ void afficheRegles() {
 
 }
 
-void afficheGrille(const vector<vector<Piece>> &grille) {
-    for (int i = 0; i < grille.size(); i++) {
-        for (int j = 0; j < grille[i].size(); j++) {
+void showGameBoard(const vector<vector<Piece>> &gameBoard) {
+    for (const auto &i: gameBoard) {
+        for (auto j: i) {
             cout << setw(2) << "\x1b[38;2;85;85;255m |\x1b[0m" << setw(2)
-                 << ((grille[i][j] == Piece::red) ? "\x1b[38;2;255;0;0m o\x1b[0m" : (grille[i][j] == Piece::yellow)
-                                                                                    ? "\x1b[38;2;255;255;0m o\x1b[0m"
-                                                                                    : " ");
+                 << ((j == Piece::red) ? "\x1b[38;2;255;0;0m o\x1b[0m" : (j == Piece::yellow)
+                                                                         ? "\x1b[38;2;255;255;0m o\x1b[0m"
+                                                                         : " ");
 
         }
         cout << setw(2) << "\x1b[38;2;85;85;255m |\x1b[0m" << endl;
