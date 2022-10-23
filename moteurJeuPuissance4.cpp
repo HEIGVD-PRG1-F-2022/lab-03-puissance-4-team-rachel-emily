@@ -10,7 +10,7 @@ const int LOWEST_SCORE = -1000;
 const int MAX_DEEP = 3;
 
 bool isLegalMove(vector<vector<Piece>> &gameBoard, int move) {
-    if ((move >= 0 && move <= gameBoard.size()) && (gameBoard[0][move] == Piece::empty)) {
+    if ((move >= 0 && move < gameBoard[0].size()) && (gameBoard[0][move] == Piece::empty)) {
         return true;
     }
     return false;
