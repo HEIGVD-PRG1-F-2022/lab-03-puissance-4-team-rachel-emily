@@ -25,13 +25,13 @@ Ce projet a été écrit en c++ dans le cadre de la classe **PROG1** par Rachel 
 Le plateau doit avoir une taille minimale de 4x2 ou de 2x4 pour pouvoir être validé par le programme. Sinon, ce dernier vous demandera d'entrer de nouvelles dimensions jusqu'à ce que le plateau soit "jouable", c'est-à-dire qu'il y ait la possiblité d'avoir une victoire.
   
 ### Jouer une partie
- 1. Le premier joueur choisit un chiffre entre 0 et n, n étant le nombre de colonnes choisies au début moins 1, puis appuie sur *Enter* pour valider le coup.
+ 1. Le premier joueur choisit un chiffre entre 0 et n-1 où n est le nombre de colonnes choisi au début, puis appuie sur *Enter* pour valider le coup.
  Le coup sera joué uniquement si la colonne choisie n'est pas pleine. Sinon, le joueur doit rejouer jusqu'à rentrer un chiffre valide.
  2. S'il s'agit de l'ordinateur, le coup va être placé de manière aléatoire à moins qu'il existe une possibilité de gagner pour l'ordinateur ou de bloquer le joueur si ce dernier peut gagner lors de son prochain tour.
  En revanche, s'il s'agit d'une autre personne, cette dernière va effectuer les mêmes étapes que le premier joueur.
- C'est-à-dire, qu'elle devra choisir un chiffre entre 0 et n, n étant le nombre de colonnes choisies au début moins 1, puis appuyer sur *Enter* pour valider le coup.
+ C'est-à-dire, qu'elle devra choisir un chiffre entre 0 et n-1 où n est le nombre de colonnes choisi au début, puis appuyer sur *Enter* pour valider le coup.
  Le coup sera uniquement joué si la colonne choisie n'est pas pleine. Sinon, le joueur devra rejouer jusqu'à rentrer un chiffre valide.
- 3. La partie se termine lorsque l'un des joueurs réussit à aligner au moins 4 de ses jetons horizontalement, verticalement ou diagonalement.
+ 3. La partie se termine lorsque l'un des joueurs réussit à aligner au moins 4 de ses jetons horizontalement, verticalement ou diagonalement ou qu'il n'y ait plus une seule colonne de vide.
 
 <br>
 
