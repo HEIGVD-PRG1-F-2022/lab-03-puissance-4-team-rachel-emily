@@ -22,7 +22,7 @@ Ce projet a été écrit en c++ dans le cadre de la classe **PROG1** par Rachel 
   3. Entrer le nombre de colonnes voulues
 
 #### ATTENTION
-Le plateau doit avoir une taille minimale de 4x1 ou de 1x4 pour pouvoir être validé par le programme. Sinon, ce dernier vous demandera d'entrer de nouvelles dimensions jusqu'à ce que le plateau soit "jouable", c'est-à-dire qu'il y ait une possiblité d'aligner au minimum 4 jetons.
+Le plateau doit avoir une taille minimale de 4x2 ou de 2x4 pour pouvoir être validé par le programme. Sinon, ce dernier vous demandera d'entrer de nouvelles dimensions jusqu'à ce que le plateau soit "jouable", c'est-à-dire qu'il y ait la possiblité d'avoir une victoire.
   
 ### Jouer une partie
  1. Le premier joueur choisit un chiffre entre 0 et n, n étant le nombre de colonnes choisies au début moins 1, puis appuie sur *Enter* pour valider le coup.
