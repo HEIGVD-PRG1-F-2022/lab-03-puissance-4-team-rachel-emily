@@ -21,7 +21,10 @@ void askForIntAndCheck(int &numberToFill, string errorMessage) {
 
 int randomInt(int maxValue) {
     srand(time(0));
-    return (rand() % maxValue);
+    if (maxValue != 0) {
+        return (rand() % maxValue);
+    }
+    return 0;
 }
 
 void setWindowsConsoleToUTF8() {
