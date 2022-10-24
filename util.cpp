@@ -1,6 +1,11 @@
-//
-// Created by rache on 21.10.2022.
-//
+/**
+ * useful functions not specifically related to the game
+ *
+ * @name Puissance4
+ * @date 21.10.2022
+ * @authors Emily Baquerizo and Rachel Tranchida
+ */
+
 #include <iostream>
 #include <limits>
 

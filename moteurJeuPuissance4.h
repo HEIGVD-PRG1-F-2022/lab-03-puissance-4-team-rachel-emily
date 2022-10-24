@@ -1,6 +1,10 @@
-//
-// Created by emily on 18.10.2022.
-//
+/**
+ * functions used to compute the game Puissance4
+ *
+ * @name Puissance4
+ * @date 18.10.2022
+ * @authors Emily Baquerizo and Rachel Tranchida
+ */
 
 #ifndef PUISSANCE4_MOTEURJEUPUISSANCE4_H
 #define PUISSANCE4_MOTEURJEUPUISSANCE4_H

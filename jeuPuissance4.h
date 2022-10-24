@@ -1,6 +1,15 @@
-//
-// Created by rache on 21.10.2022.
-//
+// /**
+// * ${PROJECT_NAME}
+// *
+// *
+
+/**
+ * main game functions
+ *
+ * @name Puissance4
+ * @date 23.10.2022
+ * @authors Emily Baquerizo and Rachel Tranchida
+ */
 
 #ifndef PUISSANCE4_JEUPUISSANCE4_H
 #define PUISSANCE4_JEUPUISSANCE4_H

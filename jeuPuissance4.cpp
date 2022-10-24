@@ -1,6 +1,11 @@
-//
-// Created by rache on 21.10.2022.
-//
+/**
+ * main game functions
+ *
+ * @name Puissance4
+ * @date 23.10.2022
+ * @authors Emily Baquerizo and Rachel Tranchida
+ */
+
 #include "moteurJeuPuissance4.h"
 #include "affichage.h"
 #include <vector>

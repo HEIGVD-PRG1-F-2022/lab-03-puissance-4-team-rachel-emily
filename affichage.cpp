@@ -1,11 +1,15 @@
-//
-// Created by rache on 18.10.2022.
-//
+/**
+ * Display related functions
+ *
+ * @name Puissance4
+ * @date 23.10.2022
+ * @authors Emily Baquerizo and Rachel Tranchida
+ */
+
 #include <iostream>
 #include <iomanip>
 
 #include "affichage.h"
-#include "util.h"
 
 using namespace std;
 

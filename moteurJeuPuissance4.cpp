@@ -1,13 +1,15 @@
-//
-// Created by emily on 18.10.2022.
-//
+/**
+ * functions used to compute the game Puissance4
+ *
+ * @name Puissance4
+ * @date 23.10.2022
+ * @authors Emily Baquerizo and Rachel Tranchida
+ */
+
 #include "moteurJeuPuissance4.h"
 #include "util.h"
 
 using namespace std;
-const int MAX_SCORE = 1000;
-const int LOWEST_SCORE = -1000;
-const int MAX_DEEP = 3;
 
 bool isLegalMove(vector<vector<Piece>> &gameBoard, int move) {
     if ((move >= 0 && move < gameBoard[0].size()) && (gameBoard[0][move] == Piece::empty)) {
