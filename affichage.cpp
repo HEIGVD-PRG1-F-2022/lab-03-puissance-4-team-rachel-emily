@@ -8,7 +8,6 @@
 
 #include <iostream>
 #include <iomanip>
-
 #include "affichage.h"
 
 using namespace std;

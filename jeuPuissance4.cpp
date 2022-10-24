@@ -6,11 +6,11 @@
  * @authors Emily Baquerizo and Rachel Tranchida
  */
 
-#include "moteurJeuPuissance4.h"
-#include "affichage.h"
 #include <vector>
 #include <iostream>
 #include "util.h"
+#include "moteurJeuPuissance4.h"
+#include "affichage.h"
 
 using namespace std;
 

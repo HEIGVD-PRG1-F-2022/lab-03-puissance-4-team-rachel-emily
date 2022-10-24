@@ -6,7 +6,6 @@
  * @authors Emily Baquerizo and Rachel Tranchida
  */
 
-
 #ifndef PUISSANCE4_AFFICHAGE_H
 #define PUISSANCE4_AFFICHAGE_H
 

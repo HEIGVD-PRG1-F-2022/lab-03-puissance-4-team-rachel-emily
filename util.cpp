@@ -41,10 +41,6 @@ void setWindowsConsoleToUTF8() {
 }
 
 
-/**
- * Clear console with system cmd based on if it's a Windows or a UNIX system
- */
-
 
 
 
